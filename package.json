@@ -1,0 +1,24 @@
+{
+  "name": "vuejs-with-vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "parcel build index.html --dist-dir ./dist",
+    "preview": "vite preview --port 3000"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.3.2",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "@parcel/transformer-vue": "^2.12.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "parcel": "^2.12.0",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "vite": "^4.5.1",
+    "vite-plugin-style-import": "^2.0.0"
+  }
+}
