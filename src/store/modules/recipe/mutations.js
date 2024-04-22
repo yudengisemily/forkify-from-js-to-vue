@@ -1,6 +1,6 @@
-// //改变数据
-// export default{
-//     setRecipes(state,payload){
-//         state.recipe.push(payload);
-//     }
-// }
+//改变数据
+export default{
+    addRecipe(state,payload){
+        state.recipe.push(payload);
+    },
+}

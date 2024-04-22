@@ -4,11 +4,10 @@
     <spinner v-if="isLoading"></spinner>
 
     <the-header></the-header>
-    <!-- <router-view> -->
+
     <the-searchresults></the-searchresults>
 
     <the-recipe v-if="recipe !== null" :recipe="recipe" ></the-recipe>
-    <!-- </router-view> -->
 
 
   </div>
@@ -92,17 +91,23 @@ import TheHeader from './layout/TheHeader.vue';
 import TheSearchresults from './layout/TheSearchresults.vue';
 import TheRecipe from './layout/TheRecipe.vue';
 import Spinner from './components/spinner.vue';
-// const recipeContainer = document.querySelector('.recipe');
+
 export default{
   components: { TheHeader, TheSearchresults, TheRecipe, Spinner },
   data(){
     return{
-      recipe:null,
+      // recipe:this.$store.state.recipe,//这里应该用getters而不是直接访问state
+      recipe: this.$store.getters.getRecipe,
       isLoading:true,
     }
   },
   created(){
-    this.showRecipe();
+     //在app.vue文件被创立时，就开始触发请求数据，
+    // this.showRecipe(); 
+    // 本质就是让recipe有值，但是这一过程在action中得以实现，
+    // 所以直接让this.recipe获取到state里的recipe就ok了
+    console.log(this.recipe)
+    console.log(window.location.hash.slice(1))
   },
   methods:{
     timeout(s){
@@ -112,38 +117,7 @@ export default{
         }, s * 1000);
       });
     },
-    async showRecipe(){
-      try{
-        const id = window.location.hash.slice(1)
-        // const id = this.$route.hash.slice(1)
-        // console.log(this.$route.params);
-        if(!id) return;
-
-        const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/'+id);
-        const data = await res.json()
-        let {recipe} = data.data;
-        this.recipe = {
-          id: recipe.id,
-          title:recipe.title,
-          publisher:recipe.publisher,
-          sourceUrl:recipe.source_url,
-          image: recipe.image_url,
-          servings:recipe.servings,
-          cookingTime: recipe.cooking_time,
-          ingredients:recipe.ingredients
-        }
-        this.isLoading = false;
-        
-        ['load','hashchange'].forEach(ev => window.addEventListener(ev,this.showRecipe))
-      }catch(err){
-        alert(err);
-      }
-    },
-    test(){
-      console.log(this.isLoading);
-    }
-    
-    },
+},
     
 }
 
