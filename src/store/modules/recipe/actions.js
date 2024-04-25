@@ -20,7 +20,6 @@ export default {
             cookingTime: recipe.cooking_time,
             ingredients:recipe.ingredients
           }
-          // ['load','hashchange'].forEach(ev => window.addEventListener(ev,this.showRecipe))
         }catch(err){
           alert(err);
         }

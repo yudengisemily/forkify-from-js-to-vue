@@ -96,10 +96,6 @@ export default{
   components: { TheHeader, TheSearchresults, TheRecipe, Spinner },
   data(){
     return{
-      // recipe:this.$store.state.recipe,//这里应该用getters而不是直接访问state
-      // recipe: this.$store.getters['recipe/getRecipe'],
-      // isLoading:this.$store.getters['recipe/isLoading']
-      //如果你的Vuex store是模块化的，并且你的getter位于特定的模块中，你需要以模块名为前缀来访问getter。
     }
   },
   computed:{
@@ -110,18 +106,6 @@ export default{
       return this.$store.getters['recipe/isLoading'];
     }
   },
-  created(){
-     //在app.vue文件被创立时，就开始触发请求数据，
-    // this.showRecipe(); 
-    // 本质就是让recipe有值，但是这一过程在action中得以实现，
-    // 那么这里就需要调用action中的行为来使得recipe有值，
-    // 再让this.recipe获取到state里的recipe就ok了
-    this.$store.dispatch('recipe/showRecipe')
-    // console.log(this.recipe)
-    // console.log(this.isLoading)
-    // console.log(window.location.hash.slice(1))
-    
-  },
   methods:{
     timeout(s){
       return new Promise(function (_, reject) {
@@ -130,7 +114,30 @@ export default{
         }, s * 1000);
       });
     },
-},
+    addEventListeners() {
+      ['load', 'hashchange'].forEach(ev => {
+        window.addEventListener(ev, (event) => {
+          this.$store.dispatch('recipe/showRecipe');
+          });
+      });
+    },
+    removeEventListeners() {
+      ['load', 'hashchange'].forEach(ev => {
+        window.removeEventListener(ev, (event) => {
+          this.$store.dispatch('recipe/showRecipe');
+          });
+      });
+    }
+  },
+
+  mounted() {
+    // 组件挂载后，添加事件监听器
+    this.addEventListeners();
+  },
+  beforeDestroy() {
+    // 组件销毁前，移除事件监听器
+    this.removeEventListeners();
+  }
     
 }
 
