@@ -111,7 +111,6 @@ export default{
   methods:{
     test(){
       console.log(this.recipe);
-      console.log(this.isLoading);
     }
   }
 }

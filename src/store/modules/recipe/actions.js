@@ -1,12 +1,12 @@
 // 请求数据、定义数据
-export default{
-    async showRecipe(){
-        const Recipe = {};
+export default {
+    async showRecipe(context){
+        let Recipe = {};
+        
         try{
-          const id = ''
-        //   window.location.hash.slice(1)
+          const id = window.location.hash.slice(1)
           if(!id) return;
-  
+          
           const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/'+id);
           const data = await res.json()
           let {recipe} = data.data;
@@ -20,12 +20,13 @@ export default{
             cookingTime: recipe.cooking_time,
             ingredients:recipe.ingredients
           }
-          this.isLoading = false;
-          
-          ['load','hashchange'].forEach(ev => window.addEventListener(ev,this.showRecipe))
+          // ['load','hashchange'].forEach(ev => window.addEventListener(ev,this.showRecipe))
         }catch(err){
           alert(err);
         }
-        context.commit('addRecipe',Recipe)
+        // console.log(context);
+        context.commit('addRecipe',Recipe);
+        context.commit('changeIsLoading',false);
+        console.log('1')//执行到这
       }
 }
