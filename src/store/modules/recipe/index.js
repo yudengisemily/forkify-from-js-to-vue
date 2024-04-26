@@ -9,6 +9,7 @@ export default {
         return{
             isLoading:true,
             recipe:{},
+            error:null,
         }
     },
     mutations,

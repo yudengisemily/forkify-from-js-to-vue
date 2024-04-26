@@ -6,5 +6,8 @@ export default {
     },
     changeIsLoading(state,payload){
         state.isLoading = payload;
+    },
+    addError(state,payload){
+        state.error = payload;
     }
 }

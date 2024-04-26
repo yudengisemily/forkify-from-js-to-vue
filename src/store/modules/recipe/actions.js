@@ -8,7 +8,7 @@ export default {
           const id = window.location.hash.slice(1)
           if(!id) return;
           
-          const res = await fetch(`${API_URL}/`+id);
+          const res = await fetch(`${API_URL}`+id);
           const data = await res.json()
           let {recipe} = data.data;
           Recipe = {
@@ -22,11 +22,11 @@ export default {
             ingredients:recipe.ingredients
           }
         }catch(err){
-          alert(err);
+          // alert(err);
+          context.commit('addError',err);
         }
         // console.log(context);
         context.commit('addRecipe',Recipe);
         context.commit('changeIsLoading',false);
-        console.log('1')//执行到这
       }
 }
