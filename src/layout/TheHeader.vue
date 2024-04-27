@@ -1,11 +1,12 @@
 <template>
     <header class="header">
         <img src="src/img/logo.png" alt="Logo" class="header__logo" />
-        <form class="search">
+        <form class="search" @submit.prevent="submitForm">
           <input
             type="text"
             class="search__field"
             placeholder="Search over 1,000,000 recipes..."
+            v-model.trim="query"
           />
           <button class="btn search__btn">
             <svg class="search__icon">
@@ -65,3 +66,24 @@
         </nav>
       </header>
 </template>
+
+<script>
+export default{
+  data(){
+    return{
+      query: '',
+    }
+  },
+  computed:{
+    recipeList(){
+      return this.$store.getters['recipeList/getRecipeList'];
+    }
+  },
+  methods:{
+    submitForm(){
+      this.$store.dispatch('recipeList/loadSearchResults',this.query);      
+      console.log(this.recipeList);
+    },
+  }
+}
+</script>
