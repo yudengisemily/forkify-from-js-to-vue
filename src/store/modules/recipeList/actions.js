@@ -15,7 +15,6 @@ export default {
                     image: reci.image_url,
                 }
             })    
-            // console.log(context)  
         }catch(err){
             alert(err)
         }

@@ -1,29 +1,27 @@
 <template>
     <div class="search-results">
         <ul class="results">
-          <a href="#5ed6604591c37cdc054bcb34">recipe1 </a>
-          <!-- <router-link to="/#5ed6604591c37cdc054bcb34">recipe1</router-link> -->
 
-          <a href="#5ed6604591c37cdc054bc971">recipe2 </a>
-          <!-- <router-link to="/#5ed6604591c37cdc054bc971">recipe2</router-link> -->
-          <!-- 
-          <li class="preview">
-            <a class="preview__link preview__link--active" href="#23456">
-              <figure class="preview__fig">
-                <img src="src/img/test-1.jpg" alt="Test" />
-              </figure>
-              <div class="preview__data">
-                <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-                <p class="preview__publisher">The Pioneer Woman</p>
-                <div class="preview__user-generated">
-                  <svg>
-                    <use href="src/img/icons.svg#icon-user"></use>
-                  </svg>
+          <error v-if="hasError"></error>
+          <div v-else>
+            <li class="preview" v-for="recipe in recipeList" :key="recipe.id">
+              <a class="preview__link" :href="'#'+recipe.id">
+                <figure class="preview__fig">
+                  <img :src="recipe.image" :alt="recipe.title" />
+                </figure>
+                <div class="preview__data">
+                  <h4 class="preview__title">{{recipe.title}}</h4>
+                  <p class="preview__publisher">{{recipe.publisher}}</p>
+                  <!-- <div class="preview__user-generated">
+                    <svg>
+                      <use href="src/img/icons.svg#icon-user"></use>
+                    </svg>
+                  </div> -->
                 </div>
-              </div>
-            </a>
-          </li>
-           -->
+              </a>
+            </li>
+          </div>
+
         </ul>
 
         <div class="pagination">
@@ -54,3 +52,19 @@
       </div>
 
 </template>
+<script>
+import error from '../components/error.vue';
+export default{
+  components:{error},
+  computed:{
+    recipeList(){
+      return this.$store.getters['recipeList/getRecipeList'];
+    },
+    hasError(){
+      if(recipeList.length !== 0){
+        return true;
+      }else{return false}
+    }
+  }
+}
+</script>
