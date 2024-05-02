@@ -77,12 +77,14 @@ export default{
   computed:{
     recipeList(){
       return this.$store.getters['recipeList/getRecipeList'];
-    }
+    },
   },
   methods:{
-    submitForm(){
-      this.$store.dispatch('recipeList/loadSearchResults',this.query);      
-      console.log(this.recipeList);
+    async submitForm(){
+      await this.$store.dispatch('recipeList/loadSearchResults',this.query);   
+      console.log(this.query);
+      console.log(this.$store.getters['recipeList/getQuery'])
+      console.log(this.$store.getters['recipeList/getRecipeList']);
     },
   }
 }

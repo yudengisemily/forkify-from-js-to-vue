@@ -14,10 +14,12 @@ export default {
                     publisher:reci.publisher,
                     image: reci.image_url,
                 }
-            })
+            })    
+            // console.log(context)  
         }catch(err){
             alert(err)
         }
         context.commit('addRecipeList',Results);
-    }
+        context.commit('updateQuery',query);
+    },
 }

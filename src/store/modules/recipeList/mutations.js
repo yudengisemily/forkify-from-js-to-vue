@@ -2,5 +2,8 @@
 export default {
     addRecipeList(state,payload){
         state.recipeList = payload;
+    },
+    updateQuery(state,payload){
+        state.query = payload
     }
 }
