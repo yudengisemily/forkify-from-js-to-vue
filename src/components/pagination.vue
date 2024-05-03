@@ -1,6 +1,6 @@
 <template>
     <div class="pagination">
-          <!-- <button class="btn--inline pagination__btn--prev">
+          <button class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
               <use href="src/img/icons.svg#icon-arrow-left"></use>
             </svg>
@@ -11,6 +11,6 @@
             <svg class="search__icon">
               <use href="src/img/icons.svg#icon-arrow-right"></use>
             </svg>
-          </button> -->
+          </button>
         </div>  
 </template>
