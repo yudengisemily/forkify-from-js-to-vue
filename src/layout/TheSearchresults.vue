@@ -2,25 +2,23 @@
     <div class="search-results">
         <ul class="results">
 
-          <error v-if="hasError"></error>
-          <div v-else>
-            <li class="preview" v-for="recipe in recipeList" :key="recipe.id">
-              <a class="preview__link" :href="'#'+recipe.id">
-                <figure class="preview__fig">
-                  <img :src="recipe.image" :alt="recipe.title" />
-                </figure>
-                <div class="preview__data">
-                  <h4 class="preview__title">{{recipe.title}}</h4>
-                  <p class="preview__publisher">{{recipe.publisher}}</p>
-                  <!-- <div class="preview__user-generated">
-                    <svg>
-                      <use href="src/img/icons.svg#icon-user"></use>
-                    </svg>
-                  </div> -->
-                </div>
-              </a>
-            </li>
-          </div>
+          
+          <li class="preview" v-for="recipe in recipeList" :key="recipe.id">
+            <a class="preview__link" :href="'#'+recipe.id">
+              <figure class="preview__fig">
+                <img :src="recipe.image" :alt="recipe.title" />
+              </figure>
+              <div class="preview__data">
+                <h4 class="preview__title">{{recipe.title}}</h4>
+                <p class="preview__publisher">{{recipe.publisher}}</p>
+                <!-- <div class="preview__user-generated">
+                  <svg>
+                    <use href="src/img/icons.svg#icon-user"></use>
+                  </svg>
+                </div> -->
+              </div>
+            </a>
+          </li>
 
         </ul>
 
@@ -53,18 +51,16 @@
 
 </template>
 <script>
-import error from '../components/error.vue';
 export default{
-  components:{error},
   computed:{
     recipeList(){
       return this.$store.getters['recipeList/getRecipeList'];
     },
-    hasError(){
-      if(recipeList.length !== 0){
-        return true;
-      }else{return false}
-    }
+    // hasError(){
+    //   if(this.recipeList.length !== 0){
+    //     return true;
+    //   }else{return false}
+    // }
   }
 }
 </script>
