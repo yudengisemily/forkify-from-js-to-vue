@@ -5,5 +5,8 @@ export default {
     },
     updateQuery(state,payload){
         state.query = payload
+    },
+    addError(state,payload){
+        state.error = payload;
     }
 }

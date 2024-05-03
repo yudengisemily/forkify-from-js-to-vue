@@ -5,5 +5,8 @@ export default {
     },
     getQuery(state){
         return state.query;
+    },
+    getError(state){
+        return state.error;
     }
 }

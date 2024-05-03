@@ -16,7 +16,8 @@ export default {
                 }
             })    
         }catch(err){
-            alert(err)
+            // alert(err)
+            context.commit('addError',err);
         }
         context.commit('addRecipeList',Results);
         context.commit('updateQuery',query);

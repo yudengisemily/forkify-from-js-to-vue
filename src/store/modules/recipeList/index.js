@@ -8,7 +8,8 @@ export default{
     state(){
         return{
             query:'',
-            recipeList:[]
+            recipeList:[],
+            error:null,
         }
     },
     mutations,

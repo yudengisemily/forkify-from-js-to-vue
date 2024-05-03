@@ -11,9 +11,12 @@
 
 <script>
 export default{
+    props:['error'],
     computed:{
         errorMessage(){
-            return this.$store.getters['recipe/getError'];
+            const errorFromRecipe = this.$store.getters['recipe/getError'];
+            const errorFromRecipeList = this.$store.getters['recipeList/getError'];
+            return errorFromRecipe || errorFromRecipeList || this.error || '';
         }
     }
 }
