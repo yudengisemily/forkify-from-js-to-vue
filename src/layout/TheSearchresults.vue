@@ -27,7 +27,6 @@
 
         <pagination 
         :curPage="curPage" 
-        :recipePerPage="recipePerPage"
         :numPages="numPages">
         </pagination>
 

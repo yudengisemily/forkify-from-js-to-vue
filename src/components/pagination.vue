@@ -20,12 +20,11 @@
 <script>
 export default{
   // 要把按钮动态变化的curPage传出去，curPage是怎么改变的？？？
-  
-  props:['curPage','recipePerPage','numPages'],
+
+  props:['curPage','numPages'],
   methods:{
     controlButtonPageNum(){
-      const numPages = Math.ceil(this.recipeList.length/this.recipePerPage);
-
+      const numPages = this.numPages;
       // page 1, there are other pages
       if(this.curPage === 1 && numPages > 1){
 
