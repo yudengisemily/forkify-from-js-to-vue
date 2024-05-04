@@ -20,6 +20,7 @@
 <script>
 export default{
   // 要把按钮动态变化的curPage传出去，curPage是怎么改变的？？？
+  // curPage 是通过点击事件触发，然后获取到btn的goto属性，这个属性中的值是curPage+1或-1
 
   props:['curPage','numPages'],
   methods:{
