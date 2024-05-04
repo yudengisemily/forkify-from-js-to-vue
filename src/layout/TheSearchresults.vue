@@ -25,7 +25,11 @@
 
         </ul>
 
-        <pagination></pagination>
+        <pagination 
+        :curPage="curPage" 
+        :recipePerPage="recipePerPage"
+        :numPages="numPages">
+        </pagination>
 
         <p class="copyright">
           &copy; Copyright by
@@ -50,7 +54,7 @@ export default{
     return{
       errorMessage: 'no recipe for now',
       recipePerPage: RES_PER_PAGE,
-      page:1,
+      curPage:1,  // 这个变量要从pagination组件传过来，然后修改下方要显示的recipe范围
     }
   },
   computed:{
@@ -62,9 +66,12 @@ export default{
         return true;
       }else{return false}
     },
+    numPages(){
+      return Math.ceil(this.recipeList.length/this.recipePerPage);
+    },
     getRecipePerPage(){
-      const start = (this.page - 1) * this.recipePerPage // 0
-      const end = this.page * this.recipePerPage // 9 , 下方的slice函数使得并不会取到10，而是取到9
+      const start = (this.curPage - 1) * this.recipePerPage // 0
+      const end = this.curPage * this.recipePerPage // 9 , 下方的slice函数使得并不会取到10，而是取到9     
 
       return this.recipeList.slice(start,end);
     }
