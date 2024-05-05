@@ -26,7 +26,7 @@
         </ul>
 
         <pagination 
-        :curPage="curPage" 
+        @passing-curpage="updateCurpage"
         :numPages="numPages">
         </pagination>
 
@@ -72,8 +72,13 @@ export default{
       const start = (this.curPage - 1) * this.recipePerPage // 0
       const end = this.curPage * this.recipePerPage // 9 , 下方的slice函数使得并不会取到10，而是取到9     
 
-      return this.recipeList.slice(start,end);
+      return this.recipeList.slice(start,end); //根据页码筛选出每一页展示的食谱
     }
   },
+  methods:{
+    updateCurpage(newCurPage){
+      this.curPage = newCurPage;
+    }
+  }
 }
 </script>
