@@ -34,12 +34,16 @@
                 <span class="recipe__info-text">servings</span>
 
                 <div class="recipe__info-buttons">
-                  <button class="btn--tiny btn--increase-servings">
+                  <button 
+                  @click="decreaseServings"
+                  class="btn--tiny btn--increase-servings">
                     <svg>
                       <use href="src/img/icons.svg#icon-minus-circle"></use>
                     </svg>
                   </button>
-                  <button class="btn--tiny btn--increase-servings">
+                  <button 
+                  @click="increaseServings"
+                  class="btn--tiny btn--increase-servings">
                     <svg>
                       <use href="src/img/icons.svg#icon-plus-circle"></use>
                     </svg>
@@ -109,6 +113,21 @@ export default{
       if(this.$store.getters['recipe/getError'] !== null){
         return true;
       }else{return false}
+    },
+  },
+  methods:{
+    increaseServings(){
+      this.recipe.ingredients.forEach(ing => {
+        ing.quantity = (ing.quantity * (this.recipe.servings+1))/this.recipe.servings
+        // newQ = (oldQ * newServings)/oldServings
+      });
+      this.recipe.servings += 1
+    },
+    decreaseServings(){
+      this.recipe.ingredients.forEach(ing => {
+        ing.quantity = (ing.quantity * (this.recipe.servings-1))/this.recipe.servings
+      });  
+      this.recipe.servings -= 1
     }
   }
 }
