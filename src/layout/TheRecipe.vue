@@ -105,7 +105,7 @@
 
 <script>
 import error from '../components/error.vue';
-import {Fraction} from 'fractional'
+import fracty from 'fracty'
 export default{
   components:{error},
   props:['recipe'],
@@ -116,7 +116,7 @@ export default{
       }else{return false}
     },
     fractionIngServings(){
-      return this.recipe.servings ? new Fraction(this.recipe.servings).toString():''
+      return this.recipe.servings ? fracty(this.recipe.servings).toString():''
     }
   },
   methods:{
@@ -139,8 +139,8 @@ export default{
       this.recipe.servings -= 1
     }
   },
-  mounted(){
-    console.log(Fraction);
-  }
+  // mounted(){
+  //   console.log(fracty);
+  // }
 }
 </script>

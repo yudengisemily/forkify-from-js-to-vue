@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "parcel build index.html --dist-dir ./dist",
+    "build": "parcel build index.html --dist-dir ./dist --no-scope-hoist",
     "preview": "vite preview --port 3000"
   },
   "dependencies": {
-    "fractional": "^1.0.0",
+    "fracty": "^1.0.11",
     "vue": "^3.3.4",
     "vue-router": "^4.3.2",
     "vuex": "^4.1.0"
