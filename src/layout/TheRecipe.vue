@@ -30,7 +30,7 @@
                 <svg class="recipe__info-icon">
                   <use href="src/img/icons.svg#icon-users"></use>
                 </svg>
-                <span class="recipe__info-data recipe__info-data--people">{{recipe.servings}}</span>
+                <span class="recipe__info-data recipe__info-data--people">{{fractionIngServings}}</span>
                 <span class="recipe__info-text">servings</span>
 
                 <div class="recipe__info-buttons">
@@ -105,6 +105,7 @@
 
 <script>
 import error from '../components/error.vue';
+import {Fraction} from 'fractional'
 export default{
   components:{error},
   props:['recipe'],
@@ -114,21 +115,32 @@ export default{
         return true;
       }else{return false}
     },
+    fractionIngServings(){
+      return this.recipe.servings ? new Fraction(this.recipe.servings).toString():''
+    }
   },
   methods:{
     increaseServings(){
+      console.log(this.recipe.ingredients)
       this.recipe.ingredients.forEach(ing => {
-        ing.quantity = (ing.quantity * (this.recipe.servings+1))/this.recipe.servings
+        if (ing.quantity != null){
+          ing.quantity = (ing.quantity * (this.recipe.servings+1))/this.recipe.servings
+        }
         // newQ = (oldQ * newServings)/oldServings
       });
       this.recipe.servings += 1
     },
     decreaseServings(){
       this.recipe.ingredients.forEach(ing => {
-        ing.quantity = (ing.quantity * (this.recipe.servings-1))/this.recipe.servings
+        if (ing.quantity != null){
+          ing.quantity = (ing.quantity * (this.recipe.servings-1))/this.recipe.servings
+        }
       });  
       this.recipe.servings -= 1
     }
+  },
+  mounted(){
+    console.log(Fraction);
   }
 }
 </script>
