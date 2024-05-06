@@ -2,7 +2,7 @@
     <div class="pagination">
 <!-- -------------------------------------------------------------------------- -->
           <button v-if="curPage === numPages && numPages > 1" 
-            @click="passingCurPage"
+            @click="curPageMinusOne"
             class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
               <use href="src/img/icons.svg#icon-arrow-left"></use>
@@ -11,7 +11,7 @@
           </button>
 <!-- -------------------------------------------------------------------------- -->
           <button v-else-if="curPage === 1 && numPages > 1" 
-            @click="passingCurPage"
+            @click="curPagePlusOne"
             class="btn--inline pagination__btn--next">
             <span>Page {{this.curPage + 1}}</span>
             <svg class="search__icon">
@@ -21,7 +21,7 @@
 <!-- -------------------------------------------------------------------------- -->
           <div v-else-if="curPage < numPages">
             <button 
-            @click="passingCurPage"
+            @click="curPageMinusOne"
             class="btn--inline pagination__btn--prev">
               <svg class="search__icon">
                 <use href="src/img/icons.svg#icon-arrow-left"></use>
@@ -30,7 +30,7 @@
             </button>
 
             <button
-            @click="passingCurPage" 
+            @click="curPagePlusOne" 
             class="btn--inline pagination__btn--next">
               <span>Page {{this.curPage + 1}}</span>
               <svg class="search__icon">
@@ -43,16 +43,19 @@
 </template>
 <script>
 export default{
-  // 要把按钮动态变化的curPage传出去，curPage是怎么改变的？？？
-  // curPage 是通过点击事件触发，然后获取到btn的goto属性，这个属性中的值是curPage+1或-1
   props:['numPages'],
   data(){
     return{
-      curPage:2,
+      curPage:1,
     }
   },
   methods:{
-    passingCurPage(){
+    curPagePlusOne(){
+      this.curPage += 1;
+      this.$emit('passing-curpage',this.curPage);
+    },
+    curPageMinusOne(){
+      this.curPage -= 1;
       this.$emit('passing-curpage',this.curPage);
     }
   }

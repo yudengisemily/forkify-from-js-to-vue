@@ -78,6 +78,7 @@ export default{
   methods:{
     updateCurpage(newCurPage){
       this.curPage = newCurPage;
+      console.log(this.curPage)
     }
   }
 }
