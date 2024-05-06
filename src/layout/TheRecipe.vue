@@ -30,7 +30,7 @@
                 <svg class="recipe__info-icon">
                   <use href="src/img/icons.svg#icon-users"></use>
                 </svg>
-                <span class="recipe__info-data recipe__info-data--people">{{fractionIngServings}}</span>
+                <span class="recipe__info-data recipe__info-data--people">{{recipe.servings}}</span>
                 <span class="recipe__info-text">servings</span>
 
                 <div class="recipe__info-buttons">
@@ -115,13 +115,9 @@ export default{
         return true;
       }else{return false}
     },
-    fractionIngServings(){
-      return this.recipe.servings ? fracty(this.recipe.servings).toString():''
-    }
   },
   methods:{
     increaseServings(){
-      console.log(this.recipe.ingredients)
       this.recipe.ingredients.forEach(ing => {
         if (ing.quantity != null){
           ing.quantity = (ing.quantity * (this.recipe.servings+1))/this.recipe.servings
@@ -137,10 +133,19 @@ export default{
         }
       });  
       this.recipe.servings -= 1
+    },
+    fractionIngQuantity(){
+      this.recipe.ingredients.forEach(ing =>{
+        if(ing.quantity != null){
+          ing.quantity = fracty(ing.quantity)
+        }
+      })
     }
   },
-  // mounted(){
-  //   console.log(fracty);
-  // }
+  mounted(){
+    console.log(fracty);
+    console.log(this.recipe.ingredients)
+    // this.fractionIngQuantity();
+  }
 }
 </script>
