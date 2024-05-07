@@ -66,12 +66,12 @@
             <div class="recipe__ingredients">
               <h2 class="heading--2">Recipe ingredients</h2>
               <ul class="recipe__ingredient-list">
-                
+               
                 <li class="recipe__ingredient" v-for="(ing, index) in recipe.ingredients" :key="index">
                   <svg class="recipe__icon">
                     <use href="src/img/icons.svg#icon-check"></use>
                   </svg>
-                  <div class="recipe__quantity">{{ing.quantity}}</div>
+                  <div class="recipe__quantity">{{updateQuantity(ing.quantity)}}</div>
                   <div class="recipe__description">
                     <span class="recipe__unit">{{ing.unit}}</span>
                     {{ing.description}}
@@ -127,6 +127,7 @@ export default{
       this.recipe.servings += 1
     },
     decreaseServings(){
+      if(this.recipe.servings < 2){return}
       this.recipe.ingredients.forEach(ing => {
         if (ing.quantity != null){
           ing.quantity = (ing.quantity * (this.recipe.servings-1))/this.recipe.servings
@@ -134,18 +135,11 @@ export default{
       });  
       this.recipe.servings -= 1
     },
-    fractionIngQuantity(){
-      this.recipe.ingredients.forEach(ing =>{
-        if(ing.quantity != null){
-          ing.quantity = fracty(ing.quantity)
-        }
-      })
+    updateQuantity(quantity){
+      if(quantity != null){
+        return fracty(quantity);
+      }
     }
   },
-  mounted(){
-    console.log(fracty);
-    console.log(this.recipe.ingredients)
-    // this.fractionIngQuantity();
-  }
 }
 </script>
