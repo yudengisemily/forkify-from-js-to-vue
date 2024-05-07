@@ -60,6 +60,9 @@ export default{
     recipeList(){
       return this.$store.getters['recipeList/getRecipeList'];
     },
+    query(){
+      return this.$store.getters['recipeList/getQuery'];
+    },
     hasError(){
       if(this.recipeList.length === 0){
         return true;
@@ -78,7 +81,11 @@ export default{
   methods:{
     updateCurpage(newCurPage){
       this.curPage = newCurPage;
-      console.log(this.curPage)
+    }
+  },
+  watch:{
+    query(){
+      this.curPage = 1
     }
   }
 }

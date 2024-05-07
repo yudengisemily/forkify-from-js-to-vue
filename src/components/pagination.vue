@@ -49,6 +49,11 @@ export default{
       curPage:1,
     }
   },
+  computed:{
+    query(){
+      return this.$store.getters['recipeList/getQuery'];
+    },
+  },
   methods:{
     curPagePlusOne(){
       this.curPage += 1;
@@ -57,6 +62,11 @@ export default{
     curPageMinusOne(){
       this.curPage -= 1;
       this.$emit('passing-curpage',this.curPage);
+    }
+  },
+  watch:{
+    query(){
+      this.curPage = 1
     }
   }
 }
