@@ -56,9 +56,9 @@
                   <use href="src/img/icons.svg#icon-user"></use>
                 </svg>
               </div>
-              <button class="btn--round">
+              <button class="btn--round" @click="addBookmark">
                 <svg class="">
-                  <use href="src/img/icons.svg#icon-bookmark-fill"></use>
+                  <use :href="bookmarkedIcon"></use>
                 </svg>
               </button>
             </div>
@@ -109,12 +109,20 @@ import fracty from 'fracty'
 export default{
   components:{error},
   props:['recipe'],
+  data(){
+    return{
+      bookmarkRecipe:[],
+    }
+  },
   computed:{
     hasError(){
       if(this.$store.getters['recipe/getError'] !== null){
         return true;
       }else{return false}
     },
+    bookmarkedIcon(){
+      return `src/img/icons.svg#icon-bookmark${this.recipe.bookmarked ? '-fill':''}`;
+    }
   },
   methods:{
     increaseServings(){
@@ -139,6 +147,11 @@ export default{
       if(quantity != null){
         return fracty(quantity);
       }
+    },
+    addBookmark(){
+      this.bookmarkRecipe.push(this.recipe)
+      this.recipe.bookmarked = true;
+      console.log(this.recipe)
     }
   },
 }
