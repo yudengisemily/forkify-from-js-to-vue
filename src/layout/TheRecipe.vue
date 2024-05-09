@@ -56,7 +56,7 @@
                   <use href="src/img/icons.svg#icon-user"></use>
                 </svg>
               </div>
-              <button class="btn--round" @click="addBookmark">
+              <button class="btn--round" @click="toggleBookmark">
                 <svg class="">
                   <use :href="bookmarkedIcon"></use>
                 </svg>
@@ -146,9 +146,9 @@ export default{
         return fracty(quantity);
       }
     },
-    addBookmark(){
-      this.$store.dispatch('recipe/addBookmark',this.recipe);
-    }
+    toggleBookmark(){
+      this.$store.dispatch('recipe/toggleBookmark',this.recipe);
+    },
   },
 }
 </script>

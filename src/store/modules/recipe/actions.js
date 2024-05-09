@@ -34,7 +34,11 @@ export default {
         }else {context.state.recipe.bookmarked = false}
     },
 
-    addBookmark(context,recipe){
-      context.commit('addBookmark',recipe)
+    toggleBookmark(context,recipe){
+      if(recipe.bookmarked){
+        context.commit('removeBookmark',recipe.id)
+      }else{
+        context.commit('addBookmark',recipe)
+      }
     }
 }
