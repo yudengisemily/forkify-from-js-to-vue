@@ -9,5 +9,9 @@ export default {
     },
     addError(state,payload){
         state.error = payload;
+    },
+    addBookmark(state,payload){
+        payload.bookmarked = true;
+        state.bookmarksRecipe.push(payload)
     }
 }

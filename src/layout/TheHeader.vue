@@ -77,7 +77,7 @@ export default{
   methods:{
     async submitForm(){
       await this.$store.dispatch('recipeList/loadSearchResults',this.query);   
-      console.log(this.$store.getters['recipeList/getRecipeList'])
+      // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
   }
 }

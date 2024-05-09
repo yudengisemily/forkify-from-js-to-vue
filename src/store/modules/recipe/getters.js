@@ -8,5 +8,8 @@ export default {
     },
     getError(state){
         return state.error;
+    },
+    getBookmarkRecipe(state){
+        return state.bookmarksRecipe;
     }
 }

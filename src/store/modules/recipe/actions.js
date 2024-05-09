@@ -28,5 +28,13 @@ export default {
         // console.log(context);
         context.commit('addRecipe',Recipe);
         context.commit('changeIsLoading',false);
-      }
+
+        if(context.state.bookmarksRecipe.some(bookmarkR=>bookmarkR.id === Recipe.id)){
+          context.state.recipe.bookmarked = true;
+        }else {context.state.recipe.bookmarked = false}
+    },
+
+    addBookmark(context,recipe){
+      context.commit('addBookmark',recipe)
+    }
 }

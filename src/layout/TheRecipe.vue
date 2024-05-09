@@ -109,11 +109,6 @@ import fracty from 'fracty'
 export default{
   components:{error},
   props:['recipe'],
-  data(){
-    return{
-      bookmarkRecipe:[],
-    }
-  },
   computed:{
     hasError(){
       if(this.$store.getters['recipe/getError'] !== null){
@@ -122,6 +117,9 @@ export default{
     },
     bookmarkedIcon(){
       return `src/img/icons.svg#icon-bookmark${this.recipe.bookmarked ? '-fill':''}`;
+    },
+    bookmarksRecipe(){
+      return this.$store.getters['recipe/getBookmarkRecipe'];
     }
   },
   methods:{
@@ -149,9 +147,7 @@ export default{
       }
     },
     addBookmark(){
-      this.bookmarkRecipe.push(this.recipe)
-      this.recipe.bookmarked = true;
-      console.log(this.recipe)
+      this.$store.dispatch('recipe/addBookmark',this.recipe);
     }
   },
 }

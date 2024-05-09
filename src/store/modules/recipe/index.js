@@ -10,6 +10,7 @@ export default {
             isLoading:true,
             recipe:{},
             error:null,
+            bookmarksRecipe:[],
         }
     },
     mutations,
