@@ -68,14 +68,10 @@ export default{
     bookmarksRecipe(){
         // 清除 localStorage 中的所有数据
         // localStorage.clear();
-
         if(this.storageBookmarks){  // 如果localStorage里面有书签，那么就把它们更新到状态中的书签序列
           this.$store.dispatch('recipe/loadBookmarks',this.storageBookmarks)
         }
-
         return this.$store.getters['recipe/getBookmarkRecipe'];
-        
-
     }
   },
   methods:{

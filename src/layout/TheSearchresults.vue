@@ -1,11 +1,8 @@
 <template>
     <div class="search-results">
         <ul class="results">
-
-          <a href="#5ed6604591c37cdc054bcb34">recipe1 </a>
-
+          <!-- <a href="#5ed6604591c37cdc054bcb34">recipe1 </a> -->
           <error v-if="hasError" :error="errorMessage"></error>
-
           <li v-else class="preview" v-for="recipe in getRecipePerPage" :key="recipe.id">
             <a class="preview__link" :href="'#'+recipe.id">
               <figure class="preview__fig">
@@ -22,7 +19,6 @@
               </div>
             </a>
           </li>
-
         </ul>
 
         <pagination 
