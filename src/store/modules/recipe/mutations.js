@@ -23,5 +23,8 @@ export default {
             state.recipe.bookmarked = false;
         }
         localStorage.setItem('bookmarks',JSON.stringify(state.bookmarksRecipe))
+    },
+    addBookmarksFromLockal(state,payload){
+        state.bookmarksRecipe = payload;
     }
 }

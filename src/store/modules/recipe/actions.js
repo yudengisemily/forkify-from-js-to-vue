@@ -43,8 +43,7 @@ export default {
     },
 
     loadBookmarks(context,recipeList){
-      recipeList.forEach(recipe => {
-        context.commit('addBookmark',recipe)
-      });  
+      // context.state.bookmarksRecipe = recipeList❌
+      context.commit('addBookmarksFromLockal',recipeList)
     }
 }
