@@ -84,8 +84,5 @@ export default{
       // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
   },
-  // created(){
-  //   console.log(this.bookmarksRecipe)
-  // }
 }
 </script>
