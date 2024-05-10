@@ -61,10 +61,15 @@ export default{
   data(){
     return{
       query: '',
+      storageBookmarks: JSON.parse(localStorage.getItem('bookmarks')),
     }
   },
   computed:{
     bookmarksRecipe(){
+        if(this.storageBookmarks){  // 如果localStorage里面有书签，那么就把它们更新到状态中的书签序列
+          this.$store.dispatch('recipe/loadBookmarks',this.storageBookmarks)
+        }
+
         return this.$store.getters['recipe/getBookmarkRecipe'];
     }
   },
@@ -73,6 +78,6 @@ export default{
       await this.$store.dispatch('recipeList/loadSearchResults',this.query);   
       // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
-  }
+  },
 }
 </script>

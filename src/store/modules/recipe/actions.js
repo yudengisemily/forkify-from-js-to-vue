@@ -40,5 +40,11 @@ export default {
       }else{
         context.commit('addBookmark',recipe)
       }
+    },
+
+    loadBookmarks(context,recipeList){
+      recipeList.forEach(recipe => {
+        context.commit('addBookmark',recipe)
+      });  
     }
 }
