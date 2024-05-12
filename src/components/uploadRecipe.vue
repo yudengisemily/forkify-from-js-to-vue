@@ -1,5 +1,5 @@
 <template>
-    <form class="upload">
+    <form class="upload" @submit.prevent="submitForm">
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
           <label>Title</label>
@@ -60,7 +60,7 @@
           />
         </div>
 
-        <button class="btn upload__btn">
+        <button class="btn upload__btn" @click="upload">
           <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>
           </svg>
@@ -71,18 +71,20 @@
 
 <script>
 export default {
-    props: ['overlayClass','showOverlay'],
-    methods:{
-      closeForm(){
-        // this.overlayClass = 'hidden';
-        this.toggleWindow();
-        console.log(this.overlayClass);
-      },
-      toggleWindow(){
-        document.querySelector('.overlay').classList.toggle('hidden')
-        document.querySelector('.add-recipe-window').classList.toggle('hidden')
-      },   
+  data(){
+    return{
+      
     }
+  },
+  methods:{
+    upload(){
+      
+    },
+    submitForm(event){
+      const data = [...new FormData(event.target)]  //会返回一个array，里面包含所有input的value值
+      console.log(data)
+    }
+  }
 }
 </script>
 

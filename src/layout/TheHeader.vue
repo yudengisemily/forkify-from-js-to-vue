@@ -53,10 +53,12 @@
         </nav>
       </header>
       
-      <div class="overlay hidden"></div>
-      <div class="add-recipe-window hidden">
-          <button class="btn--close-modal">&times;</button>
-            <upload-recipe ></upload-recipe>     
+      <!-- <div class="overlay hidden"></div> -->
+      <!-- <div class="add-recipe-window hidden"> -->
+      <div :class="{ 'overlay': true, 'hidden': showOverlay === 'hidden' }" @click="closeForm"></div>
+      <div :class="{ 'add-recipe-window': true, 'hidden': showOverlay === 'hidden' }">
+          <button class="btn--close-modal" @click="closeForm">&times;</button>
+            <upload-recipe></upload-recipe>    
       </div>
 </template>
 
@@ -70,6 +72,7 @@ export default{
     return{
       query: '',
       storageBookmarks: JSON.parse(localStorage.getItem('bookmarks')),
+      showOverlay: 'hidden'
     }
   },
   computed:{
@@ -88,8 +91,11 @@ export default{
       // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
     showUploadRecipeForm(){
-      
-    }
+      this.showOverlay = '';
+    },
+    closeForm(){ // 点击× 和 点击空白处 都调用
+      this.showOverlay = 'hidden'
+    },
   },
 }
 </script>
