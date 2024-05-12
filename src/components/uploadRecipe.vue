@@ -3,13 +3,13 @@
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
           <label>Title</label>
-          <input value="TEST" required name="title" type="text" />
+          <input value="222222222" required name="title" type="text" />
           <label>URL</label>
-          <input value="TEST" required name="sourceUrl" type="text" />
+          <input value="222222222" required name="sourceUrl" type="text" />
           <label>Image URL</label>
-          <input value="TEST" required name="image" type="text" />
+          <input value="222222222" required name="image" type="text" />
           <label>Publisher</label>
-          <input value="TEST" required name="publisher" type="text" />
+          <input value="222222222" required name="publisher" type="text" />
           <label>Prep time</label>
           <input value="23" required name="cookingTime" type="number" />
           <label>Servings</label>
@@ -60,29 +60,42 @@
           />
         </div>
 
-        <button class="btn upload__btn" @click="upload">
+        <!-- 如果一个按钮位于表单内部，并且没有明确指定 type，它的默认类型是 submit。
+        当点击这个按钮时，它默认会触发表单的提交事件 -->
+        <button class="btn upload__btn">
           <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>
           </svg>
           <span>Upload</span>
         </button>
+
+        <error v-if="hasError" :error="error"></error>
     </form>
 </template>
 
 <script>
+import error from './error.vue'
 export default {
+  components:{error},
   data(){
     return{
-      
+      error:'',
+      hasError: false,
     }
   },
   methods:{
-    upload(){
-      
-    },
-    submitForm(event){
-      const data = [...new FormData(event.target)]  //会返回一个array，里面包含所有input的value值
+    async submitForm(event){
+      const dataArr = [...new FormData(event.target)]  //会返回一个array，里面包含所有input的value值
+      const data = Object.fromEntries(dataArr)
       console.log(data)
+
+      try{
+        await this.$store.dispatch('recipe/uploadRecipe',data)
+        this.hasError = false 
+      }catch(err){
+        this.error = err
+        this.hasError = true
+      }
     }
   }
 }
