@@ -53,9 +53,9 @@
         </nav>
       </header>
       
-      <div :class="'overlay'+' '+overlayClass"></div>
-      <div :class="'add-recipe-window'+' '+overlayClass">
-          <button class="btn--close-modal" @click="closeForm">&times;</button>
+      <div class="overlay hidden"></div>
+      <div class="add-recipe-window hidden">
+          <button class="btn--close-modal">&times;</button>
             <upload-recipe ></upload-recipe>     
       </div>
 </template>
@@ -70,7 +70,6 @@ export default{
     return{
       query: '',
       storageBookmarks: JSON.parse(localStorage.getItem('bookmarks')),
-      showOverlay: 'hidden'
     }
   },
   computed:{
@@ -89,7 +88,7 @@ export default{
       // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
     showUploadRecipeForm(){
-      this.showOverlay = ''
+      
     }
   },
 }
