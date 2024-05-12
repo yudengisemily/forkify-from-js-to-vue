@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <spinner v-if="isLoading"></spinner>
+
     <the-header></the-header>
     <the-searchresults></the-searchresults>
     <the-recipe v-if="recipe !== null" :recipe="recipe" ></the-recipe>
-  </div>
-   
-  <upload-recipe></upload-recipe>
-    
+  
+  </div> 
 </template>
 
 <script>
@@ -15,9 +14,9 @@ import TheHeader from './layout/TheHeader.vue';
 import TheSearchresults from './layout/TheSearchresults.vue';
 import TheRecipe from './layout/TheRecipe.vue';
 import Spinner from './components/spinner.vue';
-import UploadRecipe from './components/uploadRecipe.vue'
+
 export default{
-  components: { TheHeader, TheSearchresults, TheRecipe, Spinner, UploadRecipe},
+  components: { TheHeader, TheSearchresults, TheRecipe, Spinner},
   data(){
     return{
     }

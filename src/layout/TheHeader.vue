@@ -19,7 +19,7 @@
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">
-              <button class="nav__btn nav__btn--add-recipe">
+              <button class="nav__btn nav__btn--add-recipe" @click="showUploadRecipeForm">
                 <svg class="nav__icon">
                   <use href="src/img/icons.svg#icon-edit"></use>
                 </svg>
@@ -52,16 +52,25 @@
           </ul>
         </nav>
       </header>
+      
+      <div :class="'overlay'+' '+overlayClass"></div>
+      <div :class="'add-recipe-window'+' '+overlayClass">
+          <button class="btn--close-modal" @click="closeForm">&times;</button>
+            <upload-recipe ></upload-recipe>     
+      </div>
 </template>
 
 <script>
 import bookmarks from '../components/bookmarks.vue'
+import UploadRecipe from '../components/uploadRecipe.vue'
+
 export default{
-  components:{ bookmarks },
+  components:{ bookmarks, UploadRecipe },
   data(){
     return{
       query: '',
       storageBookmarks: JSON.parse(localStorage.getItem('bookmarks')),
+      showOverlay: 'hidden'
     }
   },
   computed:{
@@ -79,6 +88,9 @@ export default{
       await this.$store.dispatch('recipeList/loadSearchResults',this.query);   
       // console.log(this.$store.getters['recipeList/getRecipeList'])
     },
+    showUploadRecipeForm(){
+      this.showOverlay = ''
+    }
   },
 }
 </script>

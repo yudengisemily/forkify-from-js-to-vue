@@ -1,7 +1,4 @@
 <template>
-<div class="overlay hidden"></div>
-<div class="add-recipe-window hidden">
-    <button class="btn--close-modal">&times;</button>
     <form class="upload">
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
@@ -70,15 +67,24 @@
           <span>Upload</span>
         </button>
     </form>
-</div>
 </template>
 
 <script>
 export default {
-
+    props: ['overlayClass','showOverlay'],
+    methods:{
+      closeForm(){
+        // this.overlayClass = 'hidden';
+        this.toggleWindow();
+        console.log(this.overlayClass);
+      },
+      toggleWindow(){
+        document.querySelector('.overlay').classList.toggle('hidden')
+        document.querySelector('.add-recipe-window').classList.toggle('hidden')
+      },   
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>
