@@ -83,7 +83,7 @@ export default {
           });
         }
 
-        const sendJSON = async function(url, uploadData){
+        const sendJSON = async function(url, uploadData){ //这段解释可以看P307
           try{
             const fetchPro = fetch(url, {
               method: 'POST',
@@ -101,8 +101,22 @@ export default {
             throw err
           }
         }
+
         const data = await sendJSON(`${API_URL}?key=${KEY}`,Recipe)
-        console.log(data)
+        console.log(data.data.recipe)
+        // 渲染数据
+        let reci = {
+          id: data.data.recipe.id,
+          title:data.data.recipe.title,
+          publisher:data.data.recipe.publisher,
+          sourceUrl:data.data.recipe.source_url,
+          image: data.data.recipe.image_url,
+          servings:data.data.recipe.servings,
+          cookingTime: data.data.recipe.cooking_time,
+          ingredients:data.data.recipe.ingredients
+        }
+
+        context.commit('addRecipe',reci);
       }catch(err){
         throw err
       }

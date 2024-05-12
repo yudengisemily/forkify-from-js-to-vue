@@ -87,7 +87,7 @@ export default {
     async submitForm(event){
       const dataArr = [...new FormData(event.target)]  //会返回一个array，里面包含所有input的value值
       const data = Object.fromEntries(dataArr)
-      console.log(data)
+      // console.log(data)
 
       try{
         await this.$store.dispatch('recipe/uploadRecipe',data)
