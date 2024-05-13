@@ -10,7 +10,7 @@ export default {
           const id = window.location.hash.slice(1)
           if(!id) return;
           
-          const res = await fetch(`${API_URL}`+id);
+          const res = await fetch(`${API_URL}${id}?key=${KEY}`);
           const data = await res.json()
           let {recipe} = data.data;
           Recipe = {
@@ -117,6 +117,8 @@ export default {
         }
 
         context.commit('addRecipe',reci);
+        context.commit('addBookmark',reci);
+        window.history.pushState(null,'',`#${reci.id}`)
       }catch(err){
         throw err
       }

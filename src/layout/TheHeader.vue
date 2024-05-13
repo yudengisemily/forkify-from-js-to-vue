@@ -58,7 +58,7 @@
       <div :class="{ 'overlay': true, 'hidden': showOverlay === 'hidden' }" @click="closeForm"></div>
       <div :class="{ 'add-recipe-window': true, 'hidden': showOverlay === 'hidden' }">
           <button class="btn--close-modal" @click="closeForm">&times;</button>
-            <upload-recipe></upload-recipe>    
+            <upload-recipe @after-upload="closeForm"></upload-recipe>    
       </div>
 </template>
 

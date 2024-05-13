@@ -92,6 +92,7 @@ export default {
       try{
         await this.$store.dispatch('recipe/uploadRecipe',data)
         this.hasError = false 
+        this.$emit('after-upload')
       }catch(err){
         this.error = err
         this.hasError = true

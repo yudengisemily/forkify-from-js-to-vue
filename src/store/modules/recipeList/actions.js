@@ -1,11 +1,11 @@
 // 请求数据、定义数据
 import { API_URL } from "../../../config.js";
-
+import { KEY } from "../../../config.js";
 export default {
     async loadSearchResults(context,query){
         let Results = [];
         try{
-            const res = await fetch(`${API_URL}?search=${query}`);
+            const res = await fetch(`${API_URL}?search=${query}&key=${KEY}`);
             const data = await res.json();
             Results = data.data.recipes.map(reci=>{
                 return {
