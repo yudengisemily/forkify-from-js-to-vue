@@ -13,6 +13,7 @@ export default {
                     title:reci.title,
                     publisher:reci.publisher,
                     image: reci.image_url,
+                    ...(reci.key && {key:reci.key}), // key:recipe.key
                 }
             })    
         }catch(err){

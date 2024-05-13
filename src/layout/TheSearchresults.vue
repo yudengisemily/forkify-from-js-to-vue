@@ -11,11 +11,14 @@
               <div class="preview__data">
                 <h4 class="preview__title">{{recipe.title}}</h4>
                 <p class="preview__publisher">{{recipe.publisher}}</p>
-                <!-- <div class="preview__user-generated">
+
+                <!-- <div class="preview__user-generated"> -->
+                <div :class="{ 'preview__user-generated': true, 'hidden': !recipe.key }">
                   <svg>
                     <use href="src/img/icons.svg#icon-user"></use>
                   </svg>
-                </div> -->
+                </div>
+
               </div>
             </a>
           </li>

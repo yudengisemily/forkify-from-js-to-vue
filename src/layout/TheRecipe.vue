@@ -51,11 +51,13 @@
                 </div>
               </div>
 
-              <div class="recipe__user-generated">
+              <!-- <div class="recipe__user-generated"> -->
+              <div :class="{ 'recipe__user-generated': true, 'hidden': !recipe.key }">
                 <svg>
                   <use href="src/img/icons.svg#icon-user"></use>
                 </svg>
               </div>
+
               <button class="btn--round" @click="toggleBookmark">
                 <svg class="">
                   <use :href="bookmarkedIcon"></use>
