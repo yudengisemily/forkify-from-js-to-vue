@@ -16,7 +16,7 @@ export default {
         localStorage.setItem('bookmarks',JSON.stringify(state.bookmarksRecipe))
     },
     removeBookmark(state,payload){//注意这里的payload是recipe.id
-        const index = state.bookmarksRecipe.findIndex(el => el.id = payload);
+        const index = state.bookmarksRecipe.findIndex(el => el.id == payload);
         state.bookmarksRecipe.splice(index,1)
         
         if(state.recipe.id === payload){
